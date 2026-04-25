@@ -1,14 +1,12 @@
-import Image from "next/image"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { SectionWrapper } from "@/components/section-wrapper"
 import { PracticeAreaCardModern } from "@/components/practice-area-card-modern"
 
 const practiceAreas = [
   {
     title: "Direito Civil",
-    icon: "scale",
-    image: "/elegant-law-office-with-legal-documents-warm-light.jpg",
     description:
       "Assessoria em questões contratuais, obrigações, responsabilidade civil, posse e propriedade, além de demais relações jurídicas privadas.",
     examples: [
@@ -19,8 +17,6 @@ const practiceAreas = [
   },
   {
     title: "Direito de Família e Sucessões",
-    icon: "users",
-    image: "/family-law-office-warm-professional-environment.jpg",
     description:
       "Atuação em divórcios, guarda de filhos, pensão alimentícia, inventários e planejamento sucessório com sensibilidade e discrição.",
     examples: [
@@ -31,8 +27,6 @@ const practiceAreas = [
   },
   {
     title: "Direito Administrativo",
-    icon: "building",
-    image: "/government-building-administrative-law-professiona.jpg",
     description:
       "Consultoria em licitações e contratos administrativos, processos perante órgãos públicos e relações com a administração pública.",
     examples: [
@@ -43,8 +37,6 @@ const practiceAreas = [
   },
   {
     title: "Direito Ambiental",
-    icon: "leaf",
-    image: "/environmental-law-nature-and-justice-balance.jpg",
     description:
       "Assessoria em licenciamento ambiental, regularização de atividades e defesa em processos relacionados a questões ambientais.",
     examples: [
@@ -55,8 +47,6 @@ const practiceAreas = [
   },
   {
     title: "Direito do Trabalho",
-    icon: "briefcase",
-    image: "/professional-office-workplace-employment-law.jpg",
     description:
       "Acompanhamento de questões trabalhistas, reclamações, negociações coletivas e consultoria preventiva em relações de trabalho.",
     examples: [
@@ -67,8 +57,6 @@ const practiceAreas = [
   },
   {
     title: "Direito Tributário",
-    icon: "calculator",
-    image: "/tax-law-financial-documents-calculator-professiona.jpg",
     description:
       "Planejamento tributário, defesa em autos de infração, execuções fiscais e revisão de tributos pagos indevidamente.",
     examples: [
@@ -79,8 +67,6 @@ const practiceAreas = [
   },
   {
     title: "Direito do Consumidor",
-    icon: "shopping",
-    image: "/consumer-protection-shopping-rights-professional.jpg",
     description:
       "Representação em casos de práticas abusivas, vícios de produtos e serviços, e assessoria empresarial em compliance consumerista.",
     examples: [
@@ -95,53 +81,60 @@ export default function AreasDeAtuacaoPage() {
   return (
     <>
       <Header />
-      <main className="pt-20">
-        {/* Hero Section */}
-        <section className="relative h-72 md:h-96 flex items-center">
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/law-books-on-shelf-professional-legal-library-dark.jpg"
-              alt="Biblioteca jurídica"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-primary/85" />
-          </div>
-          <div className="relative z-10 container mx-auto px-4 md:px-6">
-            <span className="inline-block px-4 py-1.5 text-xs font-medium bg-white/20 text-white rounded-full mb-4 backdrop-blur-sm">
-              Nossas Especialidades
-            </span>
-            <h1 className="text-3xl md:text-5xl font-semibold text-white mb-4 text-balance">Áreas de Atuação</h1>
-            <p className="text-white/90 leading-relaxed max-w-2xl text-lg">
-              Oferecemos assessoria jurídica especializada em diversas áreas do Direito. Passe o mouse sobre cada área
-              para conhecer mais detalhes.
+      <main>
+        {/* ── Page header (typographic) ── */}
+        <section className="pt-32 md:pt-40 pb-14 md:pb-20 bg-secondary">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="w-8 h-px bg-gold mb-7" />
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-[1.08] mb-5 text-balance max-w-xl">
+              Áreas de Atuação
+            </h1>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl text-pretty">
+              Oferecemos assessoria jurídica especializada em sete áreas do Direito, com análise criteriosa e
+              acompanhamento técnico responsável.
             </p>
           </div>
         </section>
 
-        {/* Practice Areas Grid */}
-        <SectionWrapper className="py-16 md:py-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {practiceAreas.map((area, index) => (
-              <PracticeAreaCardModern key={index} {...area} />
-            ))}
+        {/* ── Areas full list ── */}
+        <section className="py-10 md:py-16">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              {practiceAreas.map((area, i) => (
+                <PracticeAreaCardModern
+                  key={area.title}
+                  index={i + 1}
+                  title={area.title}
+                  description={area.description}
+                  examples={area.examples}
+                />
+              ))}
+            </div>
+            {/* Close the last border */}
+            <div className="border-t border-border" />
           </div>
-        </SectionWrapper>
+        </section>
 
-        {/* CTA Section */}
-        <section className="bg-secondary py-16">
-          <div className="container mx-auto px-4 md:px-6 text-center">
-            <h2 className="text-2xl md:text-3xl font-semibold text-primary mb-4">Não encontrou sua situação?</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-              Entre em contato conosco para uma análise preliminar do seu caso. Cada situação é única e merece atenção
-              individualizada.
-            </p>
-            <a
-              href="/contato"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-            >
-              Fale Conosco
-            </a>
+        {/* ── CTA ── */}
+        <section className="bg-primary py-20 md:py-28">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-xl">
+              <div className="w-8 h-px bg-gold mb-7" />
+              <h2 className="text-3xl font-bold text-white leading-[1.15] mb-5 text-balance">
+                Não encontrou sua situação?
+              </h2>
+              <p className="text-white/65 leading-relaxed mb-8 text-pretty">
+                Entre em contato para uma análise preliminar. Cada situação é única e merece atenção
+                individualizada.
+              </p>
+              <Link
+                href="/contato"
+                className="inline-flex items-center gap-2 text-sm font-medium text-white border border-white/30 px-6 py-3 hover:bg-white/8 hover:border-white/50 transition-colors duration-200 group rounded-sm"
+              >
+                Fale Conosco
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-150" />
+              </Link>
+            </div>
           </div>
         </section>
       </main>

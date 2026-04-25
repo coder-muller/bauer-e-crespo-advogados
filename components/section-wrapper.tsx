@@ -5,15 +5,11 @@ interface SectionWrapperProps {
   children: React.ReactNode
   className?: string
   id?: string
-  background?: "white" | "gray"
 }
 
-export function SectionWrapper({ children, className, id, background = "white" }: SectionWrapperProps) {
+export function SectionWrapper({ children, className, id }: SectionWrapperProps) {
   return (
-    <section
-      id={id}
-      className={cn("py-16 md:py-24", background === "gray" ? "bg-secondary" : "bg-background", className)}
-    >
+    <section id={id} className={cn("py-20 md:py-28", className)}>
       <div className="max-w-6xl mx-auto px-6">{children}</div>
     </section>
   )

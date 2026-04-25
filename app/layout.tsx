@@ -1,15 +1,19 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
+import { Plus_Jakarta_Sans } from "next/font/google"
 import "./globals.css"
 
-const inter =Inter({ subsets: ["latin"] })
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-jakarta",
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   title: "Bauer & Crespo Advogados | Assessoria Jurídica",
   description:
     "Escritório de advocacia com atuação responsável e técnica em diversas áreas do Direito. Direito Civil, Família, Administrativo, Ambiental, Trabalhista, Tributário e Consumidor.",
-  generator: "v0.app",
   icons: {
     icon: [
       {
@@ -39,8 +43,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR">
-      <body className={`font-sans antialiased bg-background text-foreground`}>
+    <html lang="pt-BR" className={jakarta.variable}>
+      <body className="font-sans antialiased bg-background text-foreground">
         {children}
       </body>
     </html>
