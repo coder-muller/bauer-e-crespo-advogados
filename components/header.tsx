@@ -20,7 +20,7 @@ export function Header() {
 
   // Close mobile menu on route change
   useEffect(() => {
-    setMobileOpen(false)
+    setMobileOpen(false) // eslint-disable-line react-hooks/set-state-in-effect
   }, [pathname])
 
   return (
@@ -30,7 +30,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 shrink-0">
             <Image
-              src="/logo.png"
+              src="https://59bl0nz7dg.ufs.sh/f/58fbkIWjFNDHflg1MlAu5D9bqoE4hzBjyT8X63ZdlfHCkLgm"
               alt="Bauer & Crespo Advogados"
               width={34}
               height={34}
@@ -91,7 +91,7 @@ export function Header() {
           <div className="flex items-center justify-between px-6 h-16 shrink-0">
             <Link href="/" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
               <Image
-                src="/logo.png"
+                src="https://59bl0nz7dg.ufs.sh/f/58fbkIWjFNDHflg1MlAu5D9bqoE4hzBjyT8X63ZdlfHCkLgm"
                 alt="Bauer & Crespo Advogados"
                 width={34}
                 height={34}

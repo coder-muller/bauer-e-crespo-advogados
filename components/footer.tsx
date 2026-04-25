@@ -20,7 +20,7 @@ export function Footer() {
           <div className="space-y-4 md:col-span-1">
             <Link href="/" className="flex items-center gap-3 w-fit">
               <Image
-                src="/logo.png"
+                src="https://59bl0nz7dg.ufs.sh/f/58fbkIWjFNDHflg1MlAu5D9bqoE4hzBjyT8X63ZdlfHCkLgm"
                 alt="Bauer & Crespo Advogados"
                 width={32}
                 height={32}

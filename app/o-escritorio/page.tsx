@@ -9,7 +9,7 @@ const founders = [
     name: "Dra. Marta Bauer",
     role: "Sócia Fundadora",
     oab: "OAB/RS 98.XXX",
-    image: "/bauer-marta.jpg",
+    image: "https://59bl0nz7dg.ufs.sh/f/58fbkIWjFNDHhJfuaM6a08KTLo7gvl2VYwJsOynbU4upPMxX",
     specialties: ["Direito de Família", "Sucessões", "Direito Civil"],
     bio: "Marta Bauer iniciou sua trajetória no Direito motivada pela crença de que a advocacia pode transformar vidas. Formada pela Universidade Federal do Rio Grande do Sul em 2008, desde cedo demonstrou interesse pelas relações humanas e suas complexidades jurídicas.",
     journey: [
@@ -24,7 +24,7 @@ const founders = [
     name: "Dr. Henrique Crespo",
     role: "Sócio Fundador",
     oab: "OAB/RS 97.XXX",
-    image: "/crespo-henrique.jpg",
+    image: "https://59bl0nz7dg.ufs.sh/f/58fbkIWjFNDHuBWF1dr2Njc4aK6kCMZ0VJv3rOTwUDA5isqn",
     specialties: ["Direito Administrativo", "Direito Tributário", "Direito Empresarial"],
     bio: "Henrique Crespo construiu sua carreira com foco na resolução de conflitos complexos entre particulares e o poder público. Graduado pela PUC-RS em 2007, desenvolveu expertise em questões que envolvem a administração pública e o planejamento tributário.",
     journey: [
@@ -136,9 +136,9 @@ export default function OEscritorioPage() {
               </div>
 
               {/* Image */}
-              <div className="relative h-80 lg:h-[440px] overflow-hidden rounded">
+              <div className="relative h-80 lg:h-110 overflow-hidden rounded">
                 <Image
-                  src="/professional-lawyers-team-discussing-case-in-meeti.jpg"
+                  src="https://59bl0nz7dg.ufs.sh/f/58fbkIWjFNDHOGjye9HuLI1BqrwnHDA4m5jU09g2lVRyTCvP"
                   alt="Equipe em reunião"
                   fill
                   className="object-cover"
@@ -159,7 +159,7 @@ export default function OEscritorioPage() {
             </div>
 
             <div className="space-y-0">
-              {milestones.map((milestone, i) => (
+              {milestones.map((milestone) => (
                 <div key={milestone.year} className="flex gap-8 py-7 border-t border-border last:border-b">
                   <span className="text-2xl font-bold text-gold tabular-nums w-16 shrink-0 leading-none pt-0.5">
                     {milestone.year}
@@ -185,10 +185,10 @@ export default function OEscritorioPage() {
             </div>
 
             <div className="space-y-16 md:space-y-20">
-              {founders.map((founder, i) => (
+              {founders.map((founder) => (
                 <article key={founder.name} className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12">
                   {/* Photo */}
-                  <div className="md:col-span-2 relative h-72 md:h-[460px] overflow-hidden rounded">
+                  <div className="md:col-span-2 relative h-72 md:h-115 overflow-hidden rounded">
                     <Image
                       src={founder.image}
                       alt={founder.name}

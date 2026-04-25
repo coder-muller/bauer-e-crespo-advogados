@@ -57,7 +57,7 @@ export default function ContatoPage() {
         <section className="py-20 md:py-28">
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-              {contactInfo.map((item, i) => {
+              {contactInfo.map((item) => {
                 const Icon = item.icon
                 const isLink = !!item.href
 
@@ -101,7 +101,7 @@ export default function ContatoPage() {
           <div className="max-w-6xl mx-auto px-6">
             <div className="relative h-64 md:h-96 overflow-hidden rounded">
               <Image
-                src="/modern-law-firm-building-exterior-professional-arc.jpg"
+                src="https://59bl0nz7dg.ufs.sh/f/58fbkIWjFNDHfKMEiZuAu5D9bqoE4hzBjyT8X63ZdlfHCkLg"
                 alt="Fachada do escritório"
                 fill
                 className="object-cover"

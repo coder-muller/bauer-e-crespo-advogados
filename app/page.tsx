@@ -43,7 +43,7 @@ export default function HomePage() {
           h-[88svh] garante que a stats strip vaza ~12% abaixo do fold.
           Header transparente com texto branco já funciona sobre o painel escuro.
         */}
-        <section className="relative h-[88svh] min-h-[560px] lg:grid lg:grid-cols-[54%_46%]">
+        <section className="relative h-[88svh] min-h-140 lg:grid lg:grid-cols-[54%_46%]">
 
           {/* ── Painel esquerdo: tipografia sobre escuro puro ── */}
           <div className="bg-primary h-full flex items-center px-8 sm:px-12 lg:px-14 xl:px-20">
@@ -92,7 +92,7 @@ export default function HomePage() {
           {/* ── Painel direito: foto sem overlay ── */}
           <div className="hidden lg:block relative overflow-hidden">
             <Image
-              src="/images/hero-desk.jpg"
+              src="https://59bl0nz7dg.ufs.sh/f/58fbkIWjFNDHXMJlrk4HGUI6cS7sVPTngwi0pMBoRzNxuWyE"
               alt="Pessoa escrevendo em mesa de escritório"
               fill
               className="object-cover object-center"
@@ -156,9 +156,9 @@ export default function HomePage() {
               </div>
 
               {/* Image */}
-              <div className="relative h-72 lg:h-[420px] overflow-hidden rounded">
+              <div className="relative h-72 lg:h-105 overflow-hidden rounded">
                 <Image
-                  src="/professional-lawyer-office-meeting-room-with-books.jpg"
+                  src="https://59bl0nz7dg.ufs.sh/f/58fbkIWjFNDHiEryEOBDg9vazAuw3h8kj42q5J1YKscyXeiL"
                   alt="Sala de reuniões do escritório"
                   fill
                   className="object-cover"
