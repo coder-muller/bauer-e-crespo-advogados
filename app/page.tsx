@@ -5,7 +5,6 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { SectionWrapper } from "@/components/section-wrapper"
 import { PracticeAreaCard } from "@/components/practice-area-card"
-import { CaseCard } from "@/components/case-card"
 import { Button } from "@/components/ui/button"
 
 const practiceAreas = [
@@ -26,29 +25,6 @@ const practiceAreas = [
   {
     title: "Direito do Trabalho",
     description: "Acompanhamento de questões trabalhistas tanto na esfera consultiva quanto contenciosa.",
-  },
-]
-
-const recentCases = [
-  {
-    area: "Direito de Família",
-    description:
-      "Atuação em processo de divórcio com partilha complexa de bens, incluindo participação societária em empresa familiar.",
-    instance: "Vara de Família",
-    year: "2024",
-  },
-  {
-    area: "Direito Civil",
-    description:
-      "Assessoria em revisão contratual de financiamento imobiliário com readequação das cláusulas abusivas.",
-    instance: "Tribunal de Justiça",
-    year: "2024",
-  },
-  {
-    area: "Direito do Consumidor",
-    description: "Representação em ação de indenização por falha na prestação de serviço bancário.",
-    instance: "Juizado Especial Cível",
-    year: "2023",
   },
 ]
 
@@ -133,31 +109,14 @@ export default function HomePage() {
           </div>
         </SectionWrapper>
 
-        {/* Recent Cases Section */}
-        <SectionWrapper background="gray">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-semibold text-primary mb-2">Atuação Recente</h2>
-              <p className="text-muted-foreground">Exemplos de casos e decisões acompanhadas pelo escritório.</p>
-            </div>
-            <Link
-              href="/atuacao-e-casos"
-              className="inline-flex items-center gap-1 text-sm text-primary hover:underline underline-offset-4"
-            >
-              Ver todos os casos
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {recentCases.map((caseItem, index) => (
-              <CaseCard key={index} {...caseItem} />
-            ))}
-          </div>
-        </SectionWrapper>
-
         <section className="relative py-20">
           <div className="absolute inset-0 z-0">
-            <Image src="/elegant-law-library-with-legal-books-and-natural-l.jpg" alt="Biblioteca jurídica" fill className="object-cover" />
+            <Image
+              src="/elegant-law-library-with-legal-books-and-natural-l.jpg"
+              alt="Biblioteca jurídica"
+              fill
+              className="object-cover"
+            />
             <div className="absolute inset-0 bg-primary/90" />
           </div>
           <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">

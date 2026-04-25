@@ -4,34 +4,36 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #082550;
+  --background: #fafaf8;
+  --foreground: #18160e;
   --card: #ffffff;
-  --card-foreground: #082550;
+  --card-foreground: #18160e;
   --popover: #ffffff;
-  --popover-foreground: #082550;
-  --primary: #082550;
-  --primary-foreground: #ffffff;
-  --secondary: #f5f6f7;
-  --secondary-foreground: #082550;
-  --muted: #f5f6f7;
-  --muted-foreground: #6b7280;
-  --accent: #f5f6f7;
-  --accent-foreground: #082550;
+  --popover-foreground: #18160e;
+  --primary: #18160e;
+  --primary-foreground: #fafaf8;
+  --secondary: #f3eee5;
+  --secondary-foreground: #18160e;
+  --muted: #f3eee5;
+  --muted-foreground: #7a7062;
+  --accent: #f3eee5;
+  --accent-foreground: #18160e;
+  --gold: #c4a042;
+  --gold-foreground: #fafaf8;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: #e5e7eb;
-  --input: #e5e7eb;
-  --ring: #082550;
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --border: #e4ddd2;
+  --input: #e4ddd2;
+  --ring: #c4a042;
+  --radius: 0.5rem;
+  --sidebar: #f3eee5;
+  --sidebar-foreground: #18160e;
+  --sidebar-primary: #18160e;
+  --sidebar-primary-foreground: #fafaf8;
+  --sidebar-accent: #e8e1d5;
+  --sidebar-accent-foreground: #18160e;
+  --sidebar-border: #e4ddd2;
+  --sidebar-ring: #c4a042;
 }
 
 .dark {
@@ -85,6 +87,8 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);

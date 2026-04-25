@@ -1,10 +1,10 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Mail, Phone } from "lucide-react"
 
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/areas-de-atuacao", label: "Áreas de Atuação" },
-  { href: "/atuacao-e-casos", label: "Atuação e Casos" },
   { href: "/o-escritorio", label: "O Escritório" },
   { href: "/contato", label: "Contato" },
 ]
@@ -16,10 +16,19 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo and Description */}
           <div className="space-y-4">
-            <div className="flex flex-col">
-              <span className="text-lg font-semibold tracking-tight text-primary">Bauer & Crespo</span>
-              <span className="text-xs tracking-[0.2em] text-muted-foreground uppercase">Advogados</span>
-            </div>
+            <Link href="/" className="flex items-center gap-3">
+              <Image
+                src="/logo.png"
+                alt="Bauer & Crespo Advogados"
+                width={36}
+                height={36}
+                className="object-contain"
+              />
+              <div className="flex flex-col">
+                <span className="text-base font-semibold tracking-tight text-primary leading-tight">Bauer & Crespo</span>
+                <span className="text-[10px] tracking-[0.22em] text-muted-foreground uppercase leading-tight">Advogados</span>
+              </div>
+            </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Assessoria jurídica responsável e técnica em diversas áreas do Direito.
             </p>

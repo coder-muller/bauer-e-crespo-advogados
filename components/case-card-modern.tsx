@@ -16,14 +16,14 @@ export function CaseCardModern({ area, description, instance, year, highlight }:
 
   return (
     <article
-      className={`group relative bg-background border rounded-xl transition-all duration-500 overflow-hidden ${
-        isHovered ? "border-primary shadow-lg shadow-primary/10 scale-[1.02]" : "border-border hover:border-primary/30"
+      className={`group relative bg-background border rounded-lg transition-all duration-300 overflow-hidden ${
+        isHovered ? "border-gold/60 shadow-sm" : "border-border hover:border-border"
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Top accent bar */}
-      <div className={`h-1 bg-primary transition-all duration-500 ${isHovered ? "opacity-100" : "opacity-0"}`} />
+      <div className={`h-0.5 bg-gold transition-all duration-500 ${isHovered ? "opacity-100" : "opacity-0"}`} />
 
       <div className="p-6">
         {/* Header */}
