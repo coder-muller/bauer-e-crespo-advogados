@@ -1,8 +1,8 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Reveal } from "@/components/reveal"
-import { WhatsAppIcon } from "@/components/whatsapp-icon"
-import { site, whatsappHref } from "@/lib/site"
+import { PartnerContactPair, PartnerWhatsAppButton } from "@/components/partner-contact"
+import { partners, site } from "@/lib/site"
 
 const practiceAreas = [
   {
@@ -68,33 +68,6 @@ const values = [
   },
 ]
 
-const founders = [
-  {
-    name: "Marta Bauer",
-    role: "Sócia fundadora",
-    oab: "OAB/RS 63.087",
-    specialties: "Família · Sucessões · Civil",
-    quote: "Cada família tem sua história única. Nosso papel é protegê-la com sensibilidade e técnica jurídica.",
-    education: [
-      "Graduação em Direito — UFRGS",
-      "Especialização em Direito de Família e Sucessões — PUC-RS",
-      "Mestrado em Direito Civil — USP",
-    ],
-  },
-  {
-    name: "Henrique Crespo",
-    role: "Sócio fundador",
-    oab: "OAB/RS 39.421",
-    specialties: "Administrativo · Tributário · Empresarial",
-    quote: "A advocacia exige precisão técnica, mas por trás de cada processo há uma pessoa.",
-    education: [
-      "Graduação em Direito — PUC-RS",
-      "Especialização em Direito Público — FGV",
-      "Mestrado em Direito Tributário — UFRGS",
-    ],
-  },
-]
-
 const steps = [
   {
     number: "1",
@@ -157,12 +130,10 @@ export default function HomePage() {
               style={{ animationFillMode: "forwards", animationDelay: "500ms" }}
             >
               <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#atendimento"
                 className="inline-flex items-center gap-2.5 text-sm font-semibold bg-white text-black px-8 py-4 rounded-sm hover:bg-white/90 active:scale-[0.96] transition-[transform,background-color] duration-200"
               >
-                <WhatsAppIcon className="w-4 h-4" /> Entre em contato
+                Entre em contato
               </a>
               <p className="text-xs sm:text-sm uppercase tracking-[0.2em] opacity-60 max-w-xs leading-relaxed">
                 Técnica jurídica e presença em {site.city}
@@ -248,36 +219,31 @@ export default function HomePage() {
         <section id="socios" className="py-24 md:py-32 scroll-mt-16">
           <div className="max-w-6xl mx-auto px-6">
             <Reveal className="mb-14 md:mb-20">
-              <Eyebrow>Sócios fundadores</Eyebrow>
-              <h2 className="font-serif text-4xl md:text-5xl font-medium text-primary leading-[1.08] tracking-[-0.01em] text-balance max-w-lg">
-                Quem conduz o seu caso
+              <h2 className="text-[11px] uppercase tracking-[0.24em] font-medium text-gold-deep">
+                Sócios fundadores
               </h2>
             </Reveal>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-20">
-              {founders.map((founder, i) => (
-                <Reveal key={founder.name} as="article" delay={i * 120}>
-                  <blockquote className="font-serif italic text-2xl md:text-[1.65rem] text-primary/85 leading-[1.35] text-pretty mb-8">
-                    “{founder.quote}”
-                  </blockquote>
-
-                  <div className="w-6 h-px bg-gold mb-6" />
-
-                  <h3 className="font-serif text-2xl font-semibold text-primary">
-                    {founder.name}
+              {partners.map((partner, i) => (
+                <Reveal key={partner.id} as="article" delay={i * 120}>
+                  <h3 className="font-serif text-4xl md:text-5xl font-medium text-primary leading-[1.08] tracking-[-0.01em] text-balance mb-4">
+                    {partner.name}
                   </h3>
-                  <p className="text-sm text-muted-foreground mt-1 mb-4">
-                    {founder.role} · {founder.oab}
+                  <p className="text-sm text-muted-foreground mb-3">
+                    {partner.role} · {partner.oab}
                   </p>
-                  <p className="text-sm text-gold-deep mb-6">{founder.specialties}</p>
+                  <p className="text-sm text-gold-deep mb-8">{partner.specialties}</p>
 
-                  <ul className="space-y-1.5">
-                    {founder.education.map((item) => (
+                  <ul className="space-y-1.5 mb-8">
+                    {partner.education.map((item) => (
                       <li key={item} className="text-sm text-muted-foreground leading-relaxed">
                         {item}
                       </li>
                     ))}
                   </ul>
+
+                  <PartnerWhatsAppButton partner={partner} />
                 </Reveal>
               ))}
             </div>
@@ -307,25 +273,17 @@ export default function HomePage() {
             </div>
 
             <Reveal>
-              <div className="border-t border-white/10 pt-16 md:pt-20 flex flex-col md:flex-row md:items-end md:justify-between gap-10">
+              <div className="border-t border-white/10 pt-16 md:pt-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
                 <div className="max-w-xl">
                   <h2 className="font-serif text-4xl md:text-5xl font-medium text-white leading-[1.08] tracking-[-0.01em] text-balance mb-5">
                     Vamos conversar sobre o seu caso?
                   </h2>
                   <p className="text-white/55 leading-relaxed text-pretty">
-                    A primeira conversa serve para entendermos a sua situação e
-                    orientarmos os próximos passos.
+                    Escolha o sócio mais alinhado à sua demanda. A primeira conversa
+                    serve para entendermos a sua situação e orientarmos os próximos passos.
                   </p>
                 </div>
-                <a
-                  href={whatsappHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 text-sm font-semibold bg-white text-primary px-7 py-4 rounded-sm hover:bg-white/90 transition-[background-color,transform] duration-200 active:scale-[0.97] shrink-0 w-fit"
-                >
-                  <WhatsAppIcon className="w-4 h-4" />
-                  Falar no WhatsApp
-                </a>
+                <PartnerContactPair tone="dark" className="shrink-0" />
               </div>
             </Reveal>
           </div>

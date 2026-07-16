@@ -1,11 +1,5 @@
 import Image from "next/image"
-import { site, whatsappHref } from "@/lib/site"
-
-const contactLinks = [
-  { label: site.phoneDisplay, href: whatsappHref, external: true },
-  { label: site.email, href: `mailto:${site.email}`, external: false },
-  { label: `@${site.instagram}`, href: `https://instagram.com/${site.instagram}`, external: true },
-]
+import { site, partners, partnerWhatsappHref } from "@/lib/site"
 
 export function Footer() {
   return (
@@ -28,24 +22,33 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-[10px] uppercase tracking-[0.18em] text-gold/80 mb-5 font-medium">Contato</p>
+            <p className="text-[10px] uppercase tracking-[0.18em] text-gold/80 mb-5 font-medium">
+              Contato
+            </p>
             <div className="flex flex-col gap-3">
-              {contactLinks.map((item) => (
+              {partners.map((partner) => (
                 <a
-                  key={item.label}
-                  href={item.href}
-                  {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  key={partner.id}
+                  href={partnerWhatsappHref(partner)}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-white/65 hover:text-white transition-colors duration-150 w-fit"
                 >
-                  {item.label}
+                  <span className="text-white/40">{partner.firstName}</span>
+                  {" · "}
+                  {partner.phoneDisplay}
                 </a>
               ))}
             </div>
           </div>
 
           <div>
-            <p className="text-[10px] uppercase tracking-[0.18em] text-gold/80 mb-5 font-medium">Endereço</p>
-            <p className="text-sm text-white/65 leading-relaxed max-w-xs text-pretty">{site.address}</p>
+            <p className="text-[10px] uppercase tracking-[0.18em] text-gold/80 mb-5 font-medium">
+              Endereço
+            </p>
+            <p className="text-sm text-white/65 leading-relaxed max-w-xs text-pretty">
+              {site.address}
+            </p>
           </div>
         </div>
 

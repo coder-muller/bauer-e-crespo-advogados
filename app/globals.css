@@ -84,9 +84,7 @@
   }
 }
 
-/* ── Hero: duas faixas (nomeplate) ── */
-
-/* ── Animações Customizadas para os Heros ── */
+/* ── Animações do hero e do menu ── */
 @keyframes clip-up {
   from {
     clip-path: inset(100% 0 0 0);
@@ -103,9 +101,38 @@
   animation: clip-up 1000ms var(--ease-out-strong);
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 800ms ease-out;
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-rise {
+  opacity: 0;
+  animation: hero-rise 800ms var(--ease-out-strong) forwards;
+  animation-delay: var(--rise-delay, 0ms);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-clip-up,
-  .animate-fade-in {
+  .animate-fade-in,
+  .hero-rise {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

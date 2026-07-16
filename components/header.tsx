@@ -4,8 +4,8 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { whatsappHref } from "@/lib/site"
 import { WhatsAppIcon } from "@/components/whatsapp-icon"
+import { PartnerContactPair } from "@/components/partner-contact"
 
 const navItems = [
   { href: "#escritorio", label: "O escritório" },
@@ -83,12 +83,10 @@ export function Header() {
               </a>
             ))}
             <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#atendimento"
               className={cn(
-                "inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-sm",
-                "transition-[background-color,color,transform] duration-200 active:scale-[0.97]",
+                "inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-sm min-h-10",
+                "transition-[background-color,color,transform] duration-200 active:scale-[0.96]",
                 overDark
                   ? "bg-white/10 text-white hover:bg-white/16 border border-white/20"
                   : "bg-primary text-primary-foreground hover:bg-primary/90",
@@ -149,16 +147,8 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="px-6 py-8">
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 w-full text-sm font-medium bg-white text-primary px-5 py-3.5 rounded-sm transition-transform duration-150 active:scale-[0.97]"
-            >
-              <WhatsAppIcon className="w-4 h-4" />
-              Falar no WhatsApp
-            </a>
+          <div className="px-6 py-8" onClick={() => setMobileOpen(false)}>
+            <PartnerContactPair tone="dark" />
           </div>
         </div>
       )}
