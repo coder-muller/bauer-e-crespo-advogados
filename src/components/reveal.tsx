@@ -1,10 +1,8 @@
-"use client"
-
-import { useEffect, useRef, useState, type ReactNode } from "react"
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode, type Ref } from "react"
 
 /**
  * Revela o conteúdo com fade + rise quando entra no viewport.
- * A transição em si vive no CSS (.reveal em globals.css) e
+ * A transição em si vive no CSS (.reveal em index.css) e
  * respeita prefers-reduced-motion.
  *
  * Usa IntersectionObserver com fallback por scroll/resize, para
@@ -65,10 +63,10 @@ export function Reveal({
 
   return (
     <Tag
-      ref={ref as React.Ref<HTMLDivElement> & React.Ref<HTMLLIElement>}
+      ref={ref as Ref<HTMLDivElement> & Ref<HTMLLIElement>}
       data-visible={visible}
       className={`reveal ${className ?? ""}`}
-      style={{ "--reveal-delay": `${delay}ms` } as React.CSSProperties}
+      style={{ "--reveal-delay": `${delay}ms` } as CSSProperties}
     >
       {children}
     </Tag>

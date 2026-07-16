@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 :root {
+  --font-body: "Instrument Sans", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+
   /* Paleta derivada do logo: tinta quente quase-preta + ouro (hue ~85) */
   --background: oklch(0.975 0.007 90);
   --foreground: oklch(0.235 0.014 85);
@@ -19,8 +22,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-body), system-ui, sans-serif;
-  --font-serif: var(--font-display), Georgia, serif;
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);

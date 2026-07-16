@@ -1,3 +1,4 @@
+import type { ReactNode } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Reveal } from "@/components/reveal"
@@ -89,7 +90,7 @@ const steps = [
   },
 ]
 
-function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
   return (
     <p
       className={`text-[11px] uppercase tracking-[0.24em] font-medium mb-6 ${
@@ -101,7 +102,7 @@ function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?:
   )
 }
 
-export default function HomePage() {
+export default function App() {
   return (
     <>
       <Header />
@@ -142,7 +143,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── O escritório ── */}
         <section id="escritorio" className="py-24 md:py-32 scroll-mt-16">
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-24">
@@ -170,7 +170,6 @@ export default function HomePage() {
               </Reveal>
             </div>
 
-            {/* Valores */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 mt-20 md:mt-28">
               {values.map((value, i) => (
                 <Reveal key={value.title} delay={i * 70}>
@@ -185,7 +184,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── Áreas de atuação: o índice ── */}
         <section id="areas" className="py-24 md:py-32 bg-secondary scroll-mt-16">
           <div className="max-w-6xl mx-auto px-6">
             <Reveal className="mb-14 md:mb-20">
@@ -215,7 +213,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── Sócios ── */}
         <section id="socios" className="py-24 md:py-32 scroll-mt-16">
           <div className="max-w-6xl mx-auto px-6">
             <Reveal className="mb-14 md:mb-20">
@@ -250,7 +247,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── Atendimento + CTA final ── */}
         <section id="atendimento" className="bg-primary py-24 md:py-32 scroll-mt-16">
           <div className="max-w-6xl mx-auto px-6">
             <Reveal className="mb-14 md:mb-20">

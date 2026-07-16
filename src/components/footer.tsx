@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { site, partners, partnerWhatsappHref } from "@/lib/site"
 
 export function Footer() {
@@ -9,7 +8,7 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-start">
           <div>
-            <Image
+            <img
               src="/logo-full-light.png"
               alt="Bauer & Crespo Advogados"
               width={366}

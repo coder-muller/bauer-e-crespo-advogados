@@ -1,7 +1,4 @@
-"use client"
-
-import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useState, useEffect, type CSSProperties } from "react"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { WhatsAppIcon } from "@/components/whatsapp-icon"
@@ -39,13 +36,12 @@ export function Header() {
       >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="#topo" className="flex items-center gap-3 shrink-0" aria-label="Voltar ao topo">
-            <Image
+            <img
               src={overDark ? "/logo-mark-light.png" : "/logo-mark.png"}
               alt=""
               width={36}
               height={26}
               className="object-contain w-9 h-auto"
-              priority
             />
             <div className="flex flex-col leading-none">
               <span
@@ -114,7 +110,13 @@ export function Header() {
         <div className="fixed inset-0 z-50 bg-primary flex flex-col">
           <div className="flex items-center justify-between px-6 h-16 shrink-0">
             <div className="flex items-center gap-3">
-              <Image src="/logo-mark-light.png" alt="" width={36} height={26} className="object-contain w-9 h-auto" />
+              <img
+                src="/logo-mark-light.png"
+                alt=""
+                width={36}
+                height={26}
+                className="object-contain w-9 h-auto"
+              />
               <div className="flex flex-col leading-none">
                 <span className="font-serif text-[17px] font-semibold tracking-tight text-white">
                   Bauer &amp; Crespo
@@ -140,7 +142,7 @@ export function Header() {
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
                 className="hero-rise font-serif text-3xl font-medium py-4 border-b border-white/10 text-white/85 hover:text-white transition-colors duration-150"
-                style={{ "--rise-delay": `${i * 60}ms` } as React.CSSProperties}
+                style={{ "--rise-delay": `${i * 60}ms` } as CSSProperties}
               >
                 {item.label}
               </a>
