@@ -1,40 +1,36 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Plus_Jakarta_Sans } from "next/font/google"
+import { Cormorant_Garamond, Instrument_Sans } from "next/font/google"
+import { site } from "@/lib/site"
 import "./globals.css"
 
-const jakarta = Plus_Jakarta_Sans({
+const display = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-jakarta",
-  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-display",
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+})
+
+const body = Instrument_Sans({
+  subsets: ["latin"],
+  variable: "--font-body",
+  weight: ["400", "500", "600"],
   display: "swap",
 })
 
 export const metadata: Metadata = {
-  title: "Bauer & Crespo Advogados | Assessoria Jurídica",
+  title: `${site.name} | Porto Alegre`,
   description:
-    "Escritório de advocacia com atuação responsável e técnica em diversas áreas do Direito. Direito Civil, Família, Administrativo, Ambiental, Trabalhista, Tributário e Consumidor.",
+    "Escritório de advocacia em Porto Alegre com atuação responsável e técnica. Direito Civil, Família e Sucessões, Administrativo, Ambiental, Trabalhista, Tributário e Consumidor.",
   icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
+    icon: "/icon.png",
     apple: "/apple-icon.png",
   },
 }
 
 export const viewport: Viewport = {
-  themeColor: "#18160e",
+  themeColor: "#181610",
 }
 
 export default function RootLayout({
@@ -43,8 +39,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" className={jakarta.variable}>
-      <body className="font-sans antialiased bg-background text-foreground">
+    <html lang="pt-BR" className={`${display.variable} ${body.variable}`}>
+      <body className="font-sans bg-background text-foreground">
         {children}
       </body>
     </html>

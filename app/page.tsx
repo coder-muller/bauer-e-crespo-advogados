@@ -1,238 +1,333 @@
-import Link from "next/link"
-import Image from "next/image"
-import { ArrowRight, ChevronDown } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { PracticeAreaCard } from "@/components/practice-area-card"
+import { Reveal } from "@/components/reveal"
+import { WhatsAppIcon } from "@/components/whatsapp-icon"
+import { site, whatsappHref } from "@/lib/site"
 
 const practiceAreas = [
   {
+    numeral: "I",
     title: "Direito Civil",
     description:
-      "Assessoria em questões contratuais, obrigações, responsabilidade civil e demais relações jurídicas privadas.",
+      "Contratos, obrigações, responsabilidade civil, posse e propriedade — as relações jurídicas do dia a dia.",
   },
   {
+    numeral: "II",
     title: "Direito de Família e Sucessões",
     description:
-      "Atuação em divórcios, guarda, pensão alimentícia, inventários, testamentos e planejamento sucessório.",
+      "Divórcios, guarda, pensão alimentícia, inventários e planejamento sucessório, com sensibilidade e discrição.",
   },
   {
+    numeral: "III",
     title: "Direito Administrativo",
-    description: "Consultoria em licitações, contratos administrativos e relações com a administração pública.",
+    description:
+      "Licitações, contratos administrativos e processos perante órgãos públicos.",
   },
   {
+    numeral: "IV",
+    title: "Direito Ambiental",
+    description:
+      "Licenciamento, regularização de atividades e defesa em processos ambientais.",
+  },
+  {
+    numeral: "V",
     title: "Direito do Trabalho",
-    description: "Acompanhamento de questões trabalhistas tanto na esfera consultiva quanto contenciosa.",
+    description:
+      "Questões trabalhistas nas esferas consultiva e contenciosa, para empregados e empresas.",
+  },
+  {
+    numeral: "VI",
+    title: "Direito Tributário",
+    description:
+      "Planejamento tributário, defesa em autos de infração e recuperação de tributos pagos indevidamente.",
+  },
+  {
+    numeral: "VII",
+    title: "Direito do Consumidor",
+    description:
+      "Defesa contra práticas abusivas e vícios de produtos e serviços; compliance consumerista para empresas.",
   },
 ]
 
-const stats = [
-  { value: "9+", label: "Anos de atuação" },
-  { value: "500+", label: "Casos atendidos" },
-  { value: "7", label: "Áreas de atuação" },
+const values = [
+  {
+    title: "Ética profissional",
+    description: "Atuação rigorosamente dentro dos limites éticos da OAB, com transparência em todas as relações.",
+  },
+  {
+    title: "Atendimento humanizado",
+    description: "Cada cliente é único. Dedicamos tempo para entender sua história e suas necessidades.",
+  },
+  {
+    title: "Excelência técnica",
+    description: "Atualização e pesquisa constantes para oferecer o melhor embasamento jurídico.",
+  },
+  {
+    title: "Compromisso genuíno",
+    description: "Tratamos cada caso como se fosse nosso, com dedicação e acompanhamento próximo.",
+  },
 ]
+
+const founders = [
+  {
+    name: "Marta Bauer",
+    role: "Sócia fundadora",
+    oab: "OAB/RS 63.087",
+    specialties: "Família · Sucessões · Civil",
+    quote: "Cada família tem sua história única. Nosso papel é protegê-la com sensibilidade e técnica jurídica.",
+    education: [
+      "Graduação em Direito — UFRGS",
+      "Especialização em Direito de Família e Sucessões — PUC-RS",
+      "Mestrado em Direito Civil — USP",
+    ],
+  },
+  {
+    name: "Henrique Crespo",
+    role: "Sócio fundador",
+    oab: "OAB/RS 39.421",
+    specialties: "Administrativo · Tributário · Empresarial",
+    quote: "A advocacia exige precisão técnica, mas por trás de cada processo há uma pessoa.",
+    education: [
+      "Graduação em Direito — PUC-RS",
+      "Especialização em Direito Público — FGV",
+      "Mestrado em Direito Tributário — UFRGS",
+    ],
+  },
+]
+
+const steps = [
+  {
+    number: "1",
+    title: "Conversa inicial",
+    description:
+      "Você nos conta sua situação pelo WhatsApp ou pessoalmente. Ouvimos com atenção, sem pressa.",
+  },
+  {
+    number: "2",
+    title: "Análise do caso",
+    description:
+      "Estudamos os documentos e o contexto jurídico, e apresentamos com clareza os caminhos possíveis.",
+  },
+  {
+    number: "3",
+    title: "Acompanhamento próximo",
+    description:
+      "Conduzimos o caso mantendo você informado a cada etapa, em linguagem que você entende.",
+  },
+]
+
+function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+  return (
+    <p
+      className={`text-[11px] uppercase tracking-[0.24em] font-medium mb-6 ${
+        dark ? "text-gold" : "text-gold-deep"
+      }`}
+    >
+      {children}
+    </p>
+  )
+}
 
 export default function HomePage() {
   return (
     <>
       <Header />
-      <main>
-        {/* ── Hero ── */}
-        {/*
-          Split layout: dark text panel (left 54%) + pristine photo (right 46%).
-          h-[88svh] garante que a stats strip vaza ~12% abaixo do fold.
-          Header transparente com texto branco já funciona sobre o painel escuro.
-        */}
-        <section className="relative h-[88svh] min-h-140 lg:grid lg:grid-cols-[54%_46%]">
-
-          {/* ── Painel esquerdo: tipografia sobre escuro puro ── */}
-          <div className="bg-primary h-full flex items-center px-8 sm:px-12 lg:px-14 xl:px-20">
-            <div className="w-full">
-
-              {/* Label contextual */}
-              <p className="text-[9px] uppercase tracking-[0.32em] text-white/28 mb-6 font-medium">
-                Porto Alegre&nbsp;&nbsp;·&nbsp;&nbsp;Advocacia&nbsp;&nbsp;·&nbsp;&nbsp;Desde 2015
+      <main id="topo">
+        <section className="relative min-h-svh flex flex-col justify-center overflow-hidden bg-[oklch(0.18_0.01_85)] text-[oklch(0.98_0.01_90)] pt-20">
+          <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <h1 className="font-serif leading-[0.85] tracking-[-0.04em] uppercase flex flex-col">
+              <span
+                className="text-[clamp(4.5rem,15vw,13rem)] font-medium animate-clip-up opacity-0"
+                style={{ animationFillMode: "forwards", animationDelay: "100ms" }}
+              >
+                BAUER
+              </span>
+              <span
+                className="text-[clamp(4.5rem,15vw,13rem)] font-medium flex items-center gap-2 sm:gap-6 animate-clip-up opacity-0"
+                style={{ animationFillMode: "forwards", animationDelay: "250ms" }}
+              >
+                <em className="text-[oklch(0.75_0.12_80)] italic lowercase text-[clamp(5.5rem,18vw,15rem)] font-light -mt-4 sm:-mt-12">
+                  &amp;
+                </em>{" "}
+                CRESPO
+              </span>
+            </h1>
+            <div
+              className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10 animate-fade-in opacity-0"
+              style={{ animationFillMode: "forwards", animationDelay: "500ms" }}
+            >
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 text-sm font-semibold bg-white text-black px-8 py-4 rounded-sm hover:bg-white/90 active:scale-[0.96] transition-[transform,background-color] duration-200"
+              >
+                <WhatsAppIcon className="w-4 h-4" /> Entre em contato
+              </a>
+              <p className="text-xs sm:text-sm uppercase tracking-[0.2em] opacity-60 max-w-xs leading-relaxed">
+                Técnica jurídica e presença em {site.city}
               </p>
-
-              {/* Linha ouro — assinatura BC */}
-              <div className="w-8 h-px bg-gold/50 mb-7" />
-
-              {/* Headline */}
-              <h1 className="text-4xl lg:text-[2.75rem] font-bold text-white leading-[1.08] mb-6 text-balance">
-                Atuação jurídica<br />
-                responsável e técnica.
-              </h1>
-
-              {/* Descrição */}
-              <p className="text-sm text-white/42 mb-10 leading-relaxed text-pretty max-w-xs">
-                Assessoria com análise criteriosa de cada caso, buscando soluções
-                adequadas através de acompanhamento técnico e ético.
-              </p>
-
-              {/* CTAs */}
-              <div className="flex items-center gap-6 flex-wrap">
-                <Link
-                  href="/contato"
-                  className="inline-flex items-center gap-2 text-sm font-semibold bg-white text-primary px-5 py-2.5 hover:bg-white/90 active:bg-white/80 transition-colors duration-150 group rounded-sm"
-                >
-                  Entre em contato
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-150" />
-                </Link>
-                <Link
-                  href="/areas-de-atuacao"
-                  className="text-sm text-white/35 hover:text-white/70 transition-colors duration-200"
-                >
-                  Nossas áreas
-                </Link>
-              </div>
-
-            </div>
-          </div>
-
-          {/* ── Painel direito: foto sem overlay ── */}
-          <div className="hidden lg:block relative overflow-hidden">
-            <Image
-              src="https://59bl0nz7dg.ufs.sh/f/58fbkIWjFNDHXMJlrk4HGUI6cS7sVPTngwi0pMBoRzNxuWyE"
-              alt="Pessoa escrevendo em mesa de escritório"
-              fill
-              className="object-cover object-center"
-              priority
-            />
-          </div>
-
-          {/* Scroll affordance */}
-          <div className="absolute bottom-7 left-8 sm:left-12 lg:left-14 xl:left-20 z-10">
-            <ChevronDown className="w-4 h-4 text-white/22 animate-bounce" />
-          </div>
-
-        </section>
-
-        {/* ── Stats strip ── */}
-        <section className="border-b border-border">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-3 divide-x divide-border">
-              {stats.map((stat) => (
-                <div key={stat.label} className="flex flex-col items-center py-7 gap-1">
-                  <span className="text-2xl md:text-3xl font-bold text-primary tabular-nums">{stat.value}</span>
-                  <span className="text-xs text-muted-foreground text-center">{stat.label}</span>
-                </div>
-              ))}
             </div>
           </div>
         </section>
 
-        {/* ── Sobre o escritório ── */}
-        <section className="py-20 md:py-28">
+        {/* ── O escritório ── */}
+        <section id="escritorio" className="py-24 md:py-32 scroll-mt-16">
           <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-              {/* Text */}
-              <div>
-                <p className="text-xs text-gold uppercase tracking-[0.16em] font-semibold mb-5">
-                  Bauer &amp; Crespo
-                </p>
-                <h2 className="text-3xl md:text-4xl font-bold text-primary leading-[1.15] mb-6 text-balance">
+            <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-24">
+              <Reveal>
+                <Eyebrow>O escritório</Eyebrow>
+                <h2 className="font-serif text-4xl md:text-5xl font-medium text-primary leading-[1.08] tracking-[-0.01em] text-balance">
                   Uma parceria construída sobre valores sólidos
                 </h2>
-                <div className="space-y-4 text-muted-foreground leading-relaxed text-sm md:text-base">
-                  <p>
-                    Fundado em 2015, o escritório nasceu da união de dois profissionais com trajetórias
-                    complementares e uma visão compartilhada: oferecer advocacia de qualidade com atendimento
-                    verdadeiramente humanizado.
-                  </p>
-                  <p>
-                    Nossa metodologia prioriza o entendimento completo da situação do cliente, a pesquisa jurídica
-                    aprofundada e a comunicação clara sobre as possibilidades de cada caso.
-                  </p>
-                </div>
-                <div className="mt-8">
-                  <Link
-                    href="/o-escritorio"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-primary border-b border-primary/30 pb-0.5 hover:border-primary transition-colors duration-200 group"
-                  >
-                    Conheça o escritório
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-150" />
-                  </Link>
-                </div>
-              </div>
+              </Reveal>
 
-              {/* Image */}
-              <div className="relative h-72 lg:h-105 overflow-hidden rounded">
-                <Image
-                  src="https://59bl0nz7dg.ufs.sh/f/58fbkIWjFNDHiEryEOBDg9vazAuw3h8kj42q5J1YKscyXeiL"
-                  alt="Sala de reuniões do escritório"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              <Reveal delay={120}>
+                <div className="space-y-5 text-muted-foreground leading-relaxed text-base max-w-xl">
+                  <p>
+                    O Bauer &amp; Crespo nasceu em {site.foundedYear} da união de dois
+                    profissionais com trajetórias complementares e uma visão compartilhada:
+                    oferecer advocacia de qualidade com atendimento verdadeiramente
+                    humanizado.
+                  </p>
+                  <p>
+                    Nossa metodologia prioriza o entendimento completo da situação de cada
+                    cliente, a pesquisa jurídica aprofundada e a comunicação clara sobre as
+                    possibilidades de cada caso — sem promessas vazias, com trabalho sério.
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* Valores */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 mt-20 md:mt-28">
+              {values.map((value, i) => (
+                <Reveal key={value.title} delay={i * 70}>
+                  <div className="w-6 h-px bg-gold mb-5" />
+                  <h3 className="font-medium text-primary mb-2.5">{value.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed text-pretty">
+                    {value.description}
+                  </p>
+                </Reveal>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* ── Áreas de atuação (preview) ── */}
-        <section className="py-20 md:py-28 bg-secondary">
+        {/* ── Áreas de atuação: o índice ── */}
+        <section id="areas" className="py-24 md:py-32 bg-secondary scroll-mt-16">
           <div className="max-w-6xl mx-auto px-6">
-            <div className="flex items-end justify-between mb-2">
-              <div>
-                <p className="text-xs text-gold uppercase tracking-[0.16em] font-semibold mb-4">
-                  Especialidades
-                </p>
-                <h2 className="text-3xl md:text-4xl font-bold text-primary leading-[1.15] text-balance">
-                  Áreas de Atuação
-                </h2>
-              </div>
-              <Link
-                href="/areas-de-atuacao"
-                className="hidden md:inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors duration-150 group shrink-0 mb-1"
-              >
-                Ver todas as áreas
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-150" />
-              </Link>
-            </div>
+            <Reveal className="mb-14 md:mb-20">
+              <Eyebrow>Áreas de atuação</Eyebrow>
+              <h2 className="font-serif text-4xl md:text-5xl font-medium text-primary leading-[1.08] tracking-[-0.01em] text-balance max-w-lg">
+                Sete áreas do Direito, um mesmo cuidado
+              </h2>
+            </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2">
+            <ul>
               {practiceAreas.map((area, i) => (
-                <PracticeAreaCard
-                  key={area.title}
-                  index={i + 1}
-                  title={area.title}
-                  description={area.description}
-                  href="/areas-de-atuacao"
-                />
+                <Reveal key={area.title} as="li" delay={Math.min(i * 50, 200)}>
+                  <div className="group grid grid-cols-[3rem_1fr] md:grid-cols-[4.5rem_5fr_6fr] gap-x-4 md:gap-x-8 items-baseline py-6 md:py-7 border-t border-border last:border-b hover:bg-background/60 transition-colors duration-200 -mx-4 px-4 rounded-sm">
+                    <span className="font-serif text-lg text-gold-deep/70 group-hover:text-gold-deep transition-colors duration-200 select-none">
+                      {area.numeral}
+                    </span>
+                    <h3 className="font-serif text-2xl md:text-[1.7rem] font-medium text-primary leading-snug">
+                      {area.title}
+                    </h3>
+                    <p className="col-start-2 md:col-start-3 text-sm text-muted-foreground leading-relaxed text-pretty mt-1.5 md:mt-0">
+                      {area.description}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ── Sócios ── */}
+        <section id="socios" className="py-24 md:py-32 scroll-mt-16">
+          <div className="max-w-6xl mx-auto px-6">
+            <Reveal className="mb-14 md:mb-20">
+              <Eyebrow>Sócios fundadores</Eyebrow>
+              <h2 className="font-serif text-4xl md:text-5xl font-medium text-primary leading-[1.08] tracking-[-0.01em] text-balance max-w-lg">
+                Quem conduz o seu caso
+              </h2>
+            </Reveal>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-20">
+              {founders.map((founder, i) => (
+                <Reveal key={founder.name} as="article" delay={i * 120}>
+                  <blockquote className="font-serif italic text-2xl md:text-[1.65rem] text-primary/85 leading-[1.35] text-pretty mb-8">
+                    “{founder.quote}”
+                  </blockquote>
+
+                  <div className="w-6 h-px bg-gold mb-6" />
+
+                  <h3 className="font-serif text-2xl font-semibold text-primary">
+                    {founder.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1 mb-4">
+                    {founder.role} · {founder.oab}
+                  </p>
+                  <p className="text-sm text-gold-deep mb-6">{founder.specialties}</p>
+
+                  <ul className="space-y-1.5">
+                    {founder.education.map((item) => (
+                      <li key={item} className="text-sm text-muted-foreground leading-relaxed">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Atendimento + CTA final ── */}
+        <section id="atendimento" className="bg-primary py-24 md:py-32 scroll-mt-16">
+          <div className="max-w-6xl mx-auto px-6">
+            <Reveal className="mb-14 md:mb-20">
+              <Eyebrow dark>Como funciona</Eyebrow>
+              <h2 className="font-serif text-4xl md:text-5xl font-medium text-white leading-[1.08] tracking-[-0.01em] text-balance max-w-lg">
+                Do primeiro contato ao acompanhamento
+              </h2>
+            </Reveal>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-24 md:mb-32">
+              {steps.map((step, i) => (
+                <Reveal key={step.title} delay={i * 100}>
+                  <span className="font-serif text-4xl text-gold/80 select-none">{step.number}</span>
+                  <h3 className="font-medium text-white mt-4 mb-2.5">{step.title}</h3>
+                  <p className="text-sm text-white/55 leading-relaxed text-pretty max-w-xs">
+                    {step.description}
+                  </p>
+                </Reveal>
               ))}
             </div>
 
-            <div className="mt-6 md:hidden">
-              <Link
-                href="/areas-de-atuacao"
-                className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors duration-150 group"
-              >
-                Ver todas as áreas
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-150" />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* ── CTA ── */}
-        <section className="bg-primary py-20 md:py-28">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="max-w-xl">
-              <div className="w-8 h-px bg-gold mb-7" />
-              <h2 className="text-3xl md:text-4xl font-bold text-white leading-[1.15] mb-5 text-balance">
-                Estamos prontos para analisar o seu caso
-              </h2>
-              <p className="text-white/65 leading-relaxed mb-8 text-pretty">
-                Entre em contato para uma análise inicial da sua situação jurídica. Cada caso é único e merece
-                atenção individualizada.
-              </p>
-              <Link
-                href="/contato"
-                className="inline-flex items-center gap-2 text-sm font-medium text-white border border-white/30 px-6 py-3 hover:bg-white/8 hover:border-white/50 transition-colors duration-200 group rounded-sm"
-              >
-                Fale Conosco
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-150" />
-              </Link>
-            </div>
+            <Reveal>
+              <div className="border-t border-white/10 pt-16 md:pt-20 flex flex-col md:flex-row md:items-end md:justify-between gap-10">
+                <div className="max-w-xl">
+                  <h2 className="font-serif text-4xl md:text-5xl font-medium text-white leading-[1.08] tracking-[-0.01em] text-balance mb-5">
+                    Vamos conversar sobre o seu caso?
+                  </h2>
+                  <p className="text-white/55 leading-relaxed text-pretty">
+                    A primeira conversa serve para entendermos a sua situação e
+                    orientarmos os próximos passos.
+                  </p>
+                </div>
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 text-sm font-semibold bg-white text-primary px-7 py-4 rounded-sm hover:bg-white/90 transition-[background-color,transform] duration-200 active:scale-[0.97] shrink-0 w-fit"
+                >
+                  <WhatsAppIcon className="w-4 h-4" />
+                  Falar no WhatsApp
+                </a>
+              </div>
+            </Reveal>
           </div>
         </section>
       </main>

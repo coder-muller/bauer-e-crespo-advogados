@@ -1,82 +1,109 @@
 "use client"
 
-import Link from "next/link"
 import Image from "next/image"
-import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { whatsappHref } from "@/lib/site"
+import { WhatsAppIcon } from "@/components/whatsapp-icon"
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/areas-de-atuacao", label: "Áreas de Atuação" },
-  { href: "/o-escritorio", label: "O Escritório" },
-  { href: "/contato", label: "Contato" },
+  { href: "#escritorio", label: "O escritório" },
+  { href: "#areas", label: "Áreas de atuação" },
+  { href: "#socios", label: "Sócios" },
+  { href: "#contato", label: "Contato" },
 ]
 
 export function Header() {
-  const pathname = usePathname()
+  const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
-  // Close mobile menu on route change
   useEffect(() => {
-    setMobileOpen(false) // eslint-disable-line react-hooks/set-state-in-effect
-  }, [pathname])
+    const onScroll = () => setScrolled(window.scrollY > 32)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  const overDark = !scrolled
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-40 bg-background/96 backdrop-blur-sm border-b border-border/50">
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-40 transition-[background-color,border-color,backdrop-filter] duration-300",
+          overDark
+            ? "bg-transparent border-b border-transparent"
+            : "bg-background/85 backdrop-blur-md border-b border-border/70",
+        )}
+      >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 shrink-0">
+          <a href="#topo" className="flex items-center gap-3 shrink-0" aria-label="Voltar ao topo">
             <Image
-              src="https://59bl0nz7dg.ufs.sh/f/58fbkIWjFNDHflg1MlAu5D9bqoE4hzBjyT8X63ZdlfHCkLgm"
-              alt="Bauer & Crespo Advogados"
-              width={34}
-              height={34}
-              className="object-contain"
+              src={overDark ? "/logo-mark-light.png" : "/logo-mark.png"}
+              alt=""
+              width={36}
+              height={26}
+              className="object-contain w-9 h-auto"
               priority
             />
             <div className="flex flex-col leading-none">
               <span
-                className="text-sm font-semibold tracking-tight text-primary"
+                className={cn(
+                  "font-serif text-[17px] font-semibold tracking-tight transition-colors duration-300",
+                  overDark ? "text-white" : "text-primary",
+                )}
               >
                 Bauer &amp; Crespo
               </span>
               <span
-                className="text-[9px] tracking-[0.18em] uppercase text-muted-foreground"
+                className={cn(
+                  "text-[9px] tracking-[0.22em] uppercase transition-colors duration-300",
+                  overDark ? "text-white/50" : "text-muted-foreground",
+                )}
               >
                 Advogados
               </span>
             </div>
-          </Link>
+          </a>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-7">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "text-sm transition-colors duration-200 relative py-1",
-                    isActive
-                      ? "text-primary font-medium"
-                      : "text-muted-foreground hover:text-primary",
-                    isActive &&
-                      "after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gold",
-                  )}
-                >
-                  {item.label}
-                </Link>
-              )
-            })}
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "text-sm py-1 transition-colors duration-200",
+                  overDark
+                    ? "text-white/60 hover:text-white"
+                    : "text-muted-foreground hover:text-primary",
+                )}
+              >
+                {item.label}
+              </a>
+            ))}
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-sm",
+                "transition-[background-color,color,transform] duration-200 active:scale-[0.97]",
+                overDark
+                  ? "bg-white/10 text-white hover:bg-white/16 border border-white/20"
+                  : "bg-primary text-primary-foreground hover:bg-primary/90",
+              )}
+            >
+              <WhatsAppIcon className="w-4 h-4" />
+              WhatsApp
+            </a>
           </nav>
 
-          {/* Mobile trigger */}
           <button
-            className="md:hidden p-2 -mr-2 text-primary transition-colors duration-200"
+            className={cn(
+              "md:hidden p-3 -mr-3 transition-colors duration-300",
+              overDark ? "text-white" : "text-primary",
+            )}
             onClick={() => setMobileOpen(true)}
             aria-label="Abrir menu de navegação"
           >
@@ -85,56 +112,53 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile full-screen overlay */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 bg-primary flex flex-col">
           <div className="flex items-center justify-between px-6 h-16 shrink-0">
-            <Link href="/" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
-              <Image
-                src="https://59bl0nz7dg.ufs.sh/f/58fbkIWjFNDHflg1MlAu5D9bqoE4hzBjyT8X63ZdlfHCkLgm"
-                alt="Bauer & Crespo Advogados"
-                width={34}
-                height={34}
-                className="object-contain"
-              />
+            <div className="flex items-center gap-3">
+              <Image src="/logo-mark-light.png" alt="" width={36} height={26} className="object-contain w-9 h-auto" />
               <div className="flex flex-col leading-none">
-                <span className="text-sm font-semibold tracking-tight text-white">Bauer &amp; Crespo</span>
-                <span className="text-[9px] tracking-[0.18em] uppercase text-white/50">Advogados</span>
+                <span className="font-serif text-[17px] font-semibold tracking-tight text-white">
+                  Bauer &amp; Crespo
+                </span>
+                <span className="text-[9px] tracking-[0.22em] uppercase text-white/50">Advogados</span>
               </div>
-            </Link>
+            </div>
             <button
               onClick={() => setMobileOpen(false)}
-              className="p-2 -mr-2 text-white/60 hover:text-white transition-colors"
+              className="p-3 -mr-3 text-white/60 hover:text-white transition-colors duration-150"
               aria-label="Fechar menu"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Gold rule */}
           <div className="h-px bg-gold/30 mx-6" />
 
           <nav className="flex flex-col px-6 pt-8 gap-1 flex-1">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={cn(
-                    "text-3xl font-semibold py-4 border-b border-white/10 transition-colors duration-150",
-                    isActive ? "text-gold" : "text-white/80 hover:text-white",
-                  )}
-                >
-                  {item.label}
-                </Link>
-              )
-            })}
+            {navItems.map((item, i) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className="hero-rise font-serif text-3xl font-medium py-4 border-b border-white/10 text-white/85 hover:text-white transition-colors duration-150"
+                style={{ "--rise-delay": `${i * 60}ms` } as React.CSSProperties}
+              >
+                {item.label}
+              </a>
+            ))}
           </nav>
 
           <div className="px-6 py-8">
-            <p className="text-xs text-white/30 tracking-wide">© {new Date().getFullYear()} Bauer &amp; Crespo Advogados</p>
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 w-full text-sm font-medium bg-white text-primary px-5 py-3.5 rounded-sm transition-transform duration-150 active:scale-[0.97]"
+            >
+              <WhatsAppIcon className="w-4 h-4" />
+              Falar no WhatsApp
+            </a>
           </div>
         </div>
       )}
